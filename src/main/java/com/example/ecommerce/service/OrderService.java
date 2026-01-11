@@ -9,6 +9,6 @@ public interface OrderService {
 	
 	Order placeOrder(Long userId, List<Long> productIds);
 	
-	List<Order> getOrderByUser(Long userId);
+	List<Order> getOrdersByUser(Long userId);
 
 }
