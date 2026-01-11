@@ -2,10 +2,13 @@ package com.example.ecommerce.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.ecommerce.model.User;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	private final UserRepository userRepository;

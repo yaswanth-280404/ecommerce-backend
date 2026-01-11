@@ -2,12 +2,15 @@ package com.example.ecommerce.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.ecommerce.model.Category;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.repository.CategoryRepository;
 import com.example.ecommerce.repository.ProductRepository;
 import com.example.ecommerce.service.ProductService;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 	
 	private final CategoryRepository categoryRepository;
