@@ -1,5 +1,6 @@
 package com.example.ecommerce.service.impl;
 
+import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.model.Order;
 import com.example.ecommerce.model.OrderItem;
 import com.example.ecommerce.model.Product;
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
         // 1. Validate user
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         // 2. Create order
         Order order = new Order(user);
@@ -48,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
         for (Long productId : productIds) {
 
             Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new RuntimeException("Product not found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
             OrderItem orderItem = new OrderItem(
                     order,

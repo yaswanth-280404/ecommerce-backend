@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.exception.DuplicateResourceException;
 import com.example.ecommerce.model.Category;
 import com.example.ecommerce.repository.CategoryRepository;
 import com.example.ecommerce.service.CategoryService;
@@ -22,7 +23,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public Category createCategory(Category category) {
 		if (categoryRepository.existsByName(category.getName())) {
-			throw new RuntimeException("Category Already Exists !!");
+			throw new DuplicateResourceException("Category Already Exists !!");
 		}
 		
 		return categoryRepository.save(category);

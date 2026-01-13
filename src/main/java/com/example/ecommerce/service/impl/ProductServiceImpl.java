@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.model.Category;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.repository.CategoryRepository;
@@ -26,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	public Product createProduct(Product product, Long categoryId) {
 		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(() ->
-				new RuntimeException("Category Not Found"));
+				new ResourceNotFoundException("Category Not Found"));
 		product.setCategory(category);
 		return productRepository.save(product);
 	}

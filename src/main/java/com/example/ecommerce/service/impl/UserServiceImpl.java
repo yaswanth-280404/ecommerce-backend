@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.exception.DuplicateResourceException;
+import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.model.User;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.UserService;
@@ -23,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	public User createUser(User user) {
 		
 		if (userRepository.existsByEmail(user.getEmail())) {
-			throw new RuntimeException("Email already exists !!");
+			throw new DuplicateResourceException("Email already exists !!");
 		}
 	
 		
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(Long id) {
 		return userRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("User not found"));
+				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
 		}
 	
 
